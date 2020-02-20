@@ -90,9 +90,9 @@ h2 {
  */
 
 #reset-button {
-  background-color: white;
+  background-color: indigo;
   border: 1px solid black;
-  color: black;
+  color: white;
   font-size: 21px;
   line-height: 55px;
   margin: 1%;
@@ -106,7 +106,7 @@ h2 {
  */
 
 #reset-button:hover {
-  background-color: black;
+  background-color: blueviolet;
   color: white;
   cursor: pointer;
 }
