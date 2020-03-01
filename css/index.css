@@ -18,6 +18,7 @@ h1 {
   margin: 0 auto;
   font-family: "Major Mono Display", monospace;
   font-size: 48px;
+  color: white;
   margin: 2%;
 }
 
@@ -25,12 +26,6 @@ h1 {
  * The subheader (which let's us know whose turn it is) is a little smaller and
  * less prominent.
  */
-
-h2 {
-  font-size: 36px;
-  font-weight: lighter;
-  margin: 2%;
-}
 
 /*
  * The container is a flex-box, which is a powerful layout tool. It grows
