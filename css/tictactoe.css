@@ -91,7 +91,7 @@ h2 {
  */
 
 #reset-button {
-  background-color: 	#FE777E;
+  background-color: 	hotpink;
   border: 1px solid black;
   color: #FFC0CB;
   font-size: 21px;
@@ -107,7 +107,7 @@ h2 {
  */
 
 #reset-button:hover {
-  background-color: hotpink;
+  background-color: #FE777E;
   color: #FFC0CB;
   cursor: pointer;
 }
