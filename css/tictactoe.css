@@ -42,6 +42,7 @@ h2 {
   display: flex;           /* set our display property to use flex-box */
   justify-content: center; /* center container horizontally */
   align-items: center;     /* center content vertically */
+  color:
 }
 
 /*
@@ -71,7 +72,7 @@ h2 {
  */
 
 .square {
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.75);
   height: 150px;
   user-select: none;
   width: 150px;
@@ -92,7 +93,7 @@ h2 {
 
 #reset-button {
   background-color: 	hotpink;
-  border: 1px solid black;
+  border: 1px solid white;
   color: white;
   font-size: 21px;
   line-height: 55px;
