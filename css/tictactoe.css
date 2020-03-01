@@ -82,7 +82,7 @@ h2 {
  */
 
 .square:hover {
-  background-color: blueviolet;
+  background-color: deeppink;
   cursor: pointer;
 }
 
@@ -93,7 +93,7 @@ h2 {
 #reset-button {
   background-color: 	hotpink;
   border: 1px solid black;
-  color: #FFC0CB;
+  color: white;
   font-size: 21px;
   line-height: 55px;
   margin: 1%;
@@ -107,8 +107,8 @@ h2 {
  */
 
 #reset-button:hover {
-  background-color: #FE777E;
-  color: #FFC0CB;
+  background-color: deeppink;
+  color: white;
   cursor: pointer;
 }
 
