@@ -71,7 +71,7 @@ h2 {
  */
 
 .square {
-  border: 1px solid rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   height: 150px;
   user-select: none;
   width: 150px;
