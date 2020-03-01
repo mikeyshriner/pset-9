@@ -1,8 +1,3 @@
-/*
- * Sets the overall styles for the page. There aren't many. All text is
- * centered, and the font is a monospaced Roboto (from Google).
- */
-
 body {
   text-align: center;
   background: hotpink;
@@ -10,39 +5,25 @@ body {
   font-family: "Roboto", monospace;
 }
 
-/*
- * The header has a different font than the rest of the page. It's the title, so
- * it makes sense to make it a little different (and bigger).
- */
-
 h1 {
   margin: 0 auto;
-  font-family: "Major Mono Display", monospace;
+  font-family: "Roboto", monospace;
   font-size: 48px;
   margin: 2%;
+  color: white;
 }
-
-/*
- * The subheader (which let's us know whose turn it is) is a little smaller and
- * less prominent.
- */
 
 h2 {
   font-size: 36px;
   font-weight: lighter;
   margin: 2%;
+  color: white
 }
-
-/*
- * The container is a flex-box, which is a powerful layout tool. It grows
- * dyanamically, and allows us to position our elements with precision.
- */
 
 .container {
   display: flex;           /* set our display property to use flex-box */
   justify-content: center; /* center container horizontally */
-  align-items: center;     /* center content vertically */
-  color:
+  align-items: center;   /* center content vertically */
 }
 
 /*
@@ -71,28 +52,24 @@ h2 {
  * The square itself. We give it a specific size and border.
  */
 
-.square {
-  border: 1px solid rgba(0, 0, 0, 0.75);
-  height: 150px;
-  user-select: none;
-  width: 150px;
-}
-
-/*
- * And we give it a little flare when the user mouses over a square.
- */
+ .square {
+   border: 1px solid;
+   border-color: white;
+   font-size: 96px;
+   height: 150px;
+   line-height: 150px;
+   user-select: none;
+   width: 150px;
+   color: white;
+ }
 
 .square:hover {
   background-color: deeppink;
   cursor: pointer;
 }
 
-/*
- * The reset button sits just below the board.
- */
-
 #reset-button {
-  background-color: 	hotpink;
+  background-color: hotpink;
   border: 1px solid white;
   color: white;
   font-size: 21px;
@@ -102,10 +79,6 @@ h2 {
   width: 456px;
 }
 
-/*
- * And a little flare when the user mouses over the button. The color scheme
- * switches (background and foreground).
- */
 
 #reset-button:hover {
   background-color: deeppink;
@@ -113,11 +86,47 @@ h2 {
   cursor: pointer;
 }
 
-.square {
-  border: 1px solid rgba(0, 0, 0, 0.75);
-  font-size: 96px;
-  height: 150px;
-  line-height: 150px;
-  user-select: none;
-  width: 150px;
+#o-button {
+  background-color: hotpink;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  line-height: 45px;
+  margin: 1%;
+  text-align: center;
+  width: 228px;
+}
+
+#x-button:hover {
+  background-color: deeppink;
+  color: white;
+  cursor: pointer;
+
+}
+
+#x-button {
+  background-color: hotpink;
+  border: 1px solid white;
+  color: white;
+  font-size: 16px;
+  line-height: 45px;
+  margin: 1%;
+  text-align: center;
+  width: 228px;
+}
+
+
+#o-button:hover {
+  background-color: deeppink;
+  color: white;
+  cursor: pointer;
+}
+
+.text-and-buttons {
+  float: left;
+  width: 15%
+}
+
+#container-wrap {
+  margin-left: 15%;
 }

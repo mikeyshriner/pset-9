@@ -22,33 +22,38 @@
       <a href=".html">Brick Breaker</a>
     </header>
 
-    <table id = "table">
-      <tr>
-        <th class = "wins">X Wins</th>
-        <th class = "wins"># of ties</th>
-        <th class = "wins">O Wins</th>
-      </tr>
-      <tr>
-        <td id="x_score">0</td>
-        <td id="tie_score">0</td>
-        <td id="o_score">0</td>
-      </tr>
-    </table>
     <div class="container column">
-      <h2>Turn: X</h2>
-      <div class="container wrap" id="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-      </div>
 
-    <div id="reset-button">Play Again!</div>
-    </div>
-  </body>
-</html>
+     <div id = "text-and-buttons">
+         <h2>Turn: X</h2>
+
+       <div>
+         <button id = "x-button">X goes first!</button>
+         <button id = "o-button">O goes first!</button>
+       </div>
+
+
+       <h2 id= "x-score">X: 0</h2> <h2 id= "o-score">O: 0</h2>
+
+<br>
+
+   </div>
+
+       <div class="container wrap" id="board">
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+         <div class="square"></div>
+       </div>
+
+<br>
+
+       <div id="reset-button">Play Again!</div>
+     </div>
+   </body>
+ </html>
