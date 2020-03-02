@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 
-  <html lang = "en">
-    <head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-      <link href = "css/connectfour.css" rel = "stylesheet" type = "text/css"/>
-      <script defer src = "js/connectfour.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display"
+      rel="stylesheet"
+    />
+    <link href="css/connectfour.css" rel="stylesheet" type="text/css" />
+    <script defer src="js/connectfour.js"></script>
 
+    <title>APCSP Connect Four</title>
+  </head>
+  <body>
 
-      <title>Connect 4</title>
-    </head>
-    <body>
-      <h1>Connect 4!</h1>
+  <h1>connect four</h1>
 
-      <div id = "text-and-buttons">
-          <h2>Turn: X</h2>
-      </div>
+  <header>
+    <a href="index.html">Home Page</a>
+    <a href="tictactoe.html">Tic Tac Toe</a>
+    <a href="connectfour.html">Connect Four</a>
+    <a href=".html">Brick Breaker</a>
+  </header>
 
-      <div id = "scores">
-          <h2 id= "red-score">X: 0</h2>
-          <h2 id= "yellow-score">O: 0</h2>
-      </div>
+    <div class="container column">
+      <h2 id="page-header">
+        <span id="messagePartOne">Turn: </span>
+        <span id="button-red">red</span>
+        <span id="messagePartTwo"> or </span>
+        <span id="button-yellow">yellow</span>
+        <span id="messagePartThree">?</span>
+      </h2>
 
       <div>
         <button class="drop-button" id="button1">Drop!</button>
@@ -31,56 +45,10 @@
         <button class="drop-button" id="button7">Drop!</button>
       </div>
 
-        <div class="container wrap" id="board">
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-                  <div class="square"></div>
-        </div>
+      <canvas id="connectfour-board" width="798" height="675"></canvas>
 
-        <!-- <div id="reset-button">Play Again!</div>
-        <div>
-          <a href="index.html">Back to Home</a>
-        </div> -->
+  <div id="reset-button">Play Again!</div>
+  <div id="winCount">Red: 0 | Yellow: 0 | Tie: 0</div>
+  <div id="win-reset">Reset</div>
 
-    </body>
-
-  </html>
+  </body>
