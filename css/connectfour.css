@@ -51,9 +51,9 @@ button:hover {
 }
 
 #reset-button {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
+  background-color: lightskyblue;
+  border: 1px solid white;
+  color: white;
   font-size: 21px;
   line-height: 55px;
   margin: 1%;
@@ -62,9 +62,17 @@ button:hover {
 }
 
 #reset-button:hover {
-  background-color: black;
+  background-color: #4d79ff;
   color: white;
   cursor: pointer;
+}
+
+#button-red {
+
+}
+
+#button-yellow {
+
 }
 
 #button-red:hover {
