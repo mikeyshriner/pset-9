@@ -86,33 +86,12 @@ h2 {
   cursor: pointer;
 }
 
-#o-button {
-  background-color: hotpink;
-  border: 1px solid white;
-  color: white;
-  font-size: 16px;
-  line-height: 45px;
-  margin: 1%;
-  text-align: center;
-  width: 228px;
-}
 
 #x-button:hover {
   background-color: deeppink;
   color: white;
   cursor: pointer;
 
-}
-
-#x-button {
-  background-color: hotpink;
-  border: 1px solid white;
-  color: white;
-  font-size: 16px;
-  line-height: 45px;
-  margin: 1%;
-  text-align: center;
-  width: 228px;
 }
 
 

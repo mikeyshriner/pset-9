@@ -1,4 +1,5 @@
-/////////////////// CONSTANTS /////////////////////////////////////
+///////////////////// CONSTANTS /////////////////////////////////////
+
 const winningConditions = [
   [0, 1, 2],
   [3, 4, 5],
@@ -11,38 +12,54 @@ const winningConditions = [
 ];
 
 ///////////////////// APP STATE (VARIABLES) /////////////////////////
+
 let board;
-let turn = "X";
+let turn;
 let win;
-let xscore = 0;
-let oscore = 0;
+let xWin = 0;
+let oWin = 0;
+let tieCount = 0;
 
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
+
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
-const x = document.getElementById("x-score");
-const o = document.getElementById("o-score");
+const winCount = document.getElementById("winCount");
+const messagePartOne = document.getElementById("messagePartOne");
+const xButton = document.getElementById("x-button");
+const messagePartTwo = document.getElementById("messagePartTwo");
+const oButton = document.getElementById("o-button");
+const messagePartThree = document.getElementById("messagePartThree");
 
 ///////////////////// EVENT LISTENERS ///////////////////////////////
+
 window.onload = init;
+
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
-document.getElementById("x-button").onclick = xFirst;
-document.getElementById("o-button").onclick = oFirst;
+xButton.onclick = setTurn;
+oButton.onclick = setTurn;
 
 ///////////////////// FUNCTIONS /////////////////////////////////////
+
+//this runs first
 function init() {
-  board = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
-  ];
-  turn = "X";
+  for (let b of squares) {
+    b.textContent = null;
+  }
+  turn = null;
+  board = ["", "", "", "", "", "", "", "", ""]; /*this one is the actual board*/
+  message.textContent = null;
+  message.appendChild(messagePartOne);
+  message.appendChild(xButton);
+  message.appendChild(messagePartTwo);
+  message.appendChild(oButton);
+  message.appendChild(messagePartThree); /*this whole setup is so janky but it works*/
   win = null;
 
-  render();
-  document.getElementById("x-button").style.visibility = "visible";
-  document.getElementById("o-button").style.visibility = "visible";
+  if (turn) {
+    render();
+  }
 }
 
 function render() {
@@ -50,52 +67,36 @@ function render() {
     squares[index].textContent = mark;
   });
 
+  messagePartOne.remove();
+  xButton.remove();
+  messagePartTwo.remove();
+  oButton.remove();
+  messagePartThree.remove();
+
   message.textContent =
-    win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
+    win === "T" ? "It's a tie!"
+      : win ? `${win} wins!` : `Turn: ${turn}`;
+  winCount.textContent = `X: ${xWin} | O: ${oWin} | Tie: ${tieCount}`
 }
 
+//this is the one that runs when the user clicks a square
 function takeTurn(e) {
-  let index = squares.findIndex(function(square) {
-    return square === e.target;
-  });
-  board[index] = turn;
-  turn = turn === "X" ? "O" : "X";
+  if(turn) {
+    if (!win) {
+      let index = squares.findIndex(function(square) {
+        return square === e.target;
+      });
 
-  render();
-}
+      if (board[index] === "") {
+        board[index] = turn;
+        turn = turn === "X" ? "O" : "X";
+        win = getWinner();
 
-function getWinner() {
-  let winner = null;
-
-  winningConditions.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]] &&
-      board[conition[1]] === board[condition[2]]
-    ) {
-      winner = board[condition[0]];
-    }
-  });
-
-  return winner;
-}
-
-function takeTurn(e) {
-  if (!win) {
-    let index = squares.findIndex(function(square) {
-      return square === e.target;
-    });
-
-    if (board[index] === "") {
-      board[index] = turn;
-      turn = turn === "X" ? "O" : "X";
-      win = getWinner();
-
-      render();
+        updateWins(win)
+        render();
+      }
     }
   }
-  win = getWinner();
-  keepScore(win);
 }
 
 function getWinner() {
@@ -108,38 +109,30 @@ function getWinner() {
       board[condition[1]] === board[condition[2]]
     ) {
       winner = board[condition[0]];
-
     }
-  }
-);
+  });
 
   return winner ? winner : board.includes("") ? null : "T";
 }
 
-function keepScore(win) {
-  if (win !== null) {
-    if (win === "X") {
-      xscore++;
-      x.textContent = "X: " + xscore;
-
-    } else if (win === "O") {
-        oscore++;
-      o.textContent = "O: " + oscore;
-
-    }
+function updateWins(a) {
+  if (a === "X") {
+    xWin++
+  } else if (a === "O") {
+    oWin++
+  } else if (a === "T") {
+    tieCount++
   }
 }
 
-function xFirst() {
-    turn = "X";
-    document.getElementById("x-button").style.visibility = "invisible";
-    document.getElementById("o-button").style.visibility = "invisible";
-    render();
+function reset() {
+  xWin = 0;
+  oWin = 0;
+  tieCount = 0;
+  winCount.textContent = "X: 0 | O: 0 | Tie: 0";
 }
 
-function oFirst() {
-  turn = "O";
-  document.getElementById("x-button").style.visibility = "invisible";
-  document.getElementById("o-button").style.visibility = "invisible";
-  render();
+function setTurn(f) {
+  turn = f.target.id.charAt(0).toUpperCase();
+  message.textContent = `Turn: ${turn}`;
 }

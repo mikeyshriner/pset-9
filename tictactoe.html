@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display"
+      rel="stylesheet"
+    />
     <link href="css/tictactoe.css" rel="stylesheet" type="text/css" />
     <script defer src="js/tictactoe.js"></script>
 
-    <title>APCSP Tic-Tac-Toe</title>
+    <title>Tic-Tac-Toe</title>
   </head>
   <body>
+
     <h1>Tic | Tac | Toe</h1>
 
     <header>
@@ -23,37 +27,23 @@
     </header>
 
     <div class="container column">
-
-     <div id = "text-and-buttons">
-         <h2>Turn: X</h2>
-
-       <div>
-         <button id = "x-button">X goes first!</button>
-         <button id = "o-button">O goes first!</button>
-       </div>
-
-
-       <h2 id= "x-score">X: 0</h2> <h2 id= "o-score">O: 0</h2>
+      <h2 id="page-header"><span id="messagePartOne">Turn: </span><span id="x-button">X</span><span id="messagePartTwo"> or </span><span id="o-button">O</span><span id="messagePartThree">?</span></h2>
+<div id="winCount">X: 0 | O: 0 | Tie: 0</div>
 
 <br>
+      <div class="container wrap" id="board">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
 
-   </div>
-
-       <div class="container wrap" id="board">
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-         <div class="square"></div>
-       </div>
-
-<br>
-
-       <div id="reset-button">Play Again!</div>
-     </div>
-   </body>
- </html>
+      <div id="reset-button">Play Again!</div>
+    </div>
+  </body>
+</html>
