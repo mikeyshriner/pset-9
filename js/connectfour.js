@@ -1,159 +1,183 @@
+///////////////////// CONSTANTS /////////////////////////////////////
 
-$(document).ready(function() {
-  const connect4 = new Connect4('#connect4')
+const winningConditions = [
 
-  connect4.onPlayerMove = function() {
-    $('#player').text(connect4.player);
+];
+
+///////////////////// APP STATE (VARIABLES) /////////////////////////
+
+let columns;
+let turn;
+let win;
+let redWin = 0;
+let yellowWin = 0;
+let tieCount = 0;
+
+///////////////////// CACHED ELEMENT REFERENCES /////////////////////
+
+const message = document.querySelector("h2");
+const board = document.getElementById("connectfour-board")
+const messagePartOne = document.getElementById("messagePartOne");
+const redButton = document.getElementById("button-red");
+const messagePartTwo = document.getElementById("messagePartTwo");
+const yellowButton = document.getElementById("button-yellow");
+const messagePartThree = document.getElementById("messagePartThree");
+const canvas = document.getElementById('connectfour-board');
+const ctx = canvas.getContext("2d");
+const winCount = document.getElementById("winCount")
+
+///////////////////// EVENT LISTENERS ///////////////////////////////
+
+window.onload = init;
+document.getElementById("reset-button").onclick = init;
+document.getElementById("button1").onclick = takeTurn;
+document.getElementById("button2").onclick = takeTurn;
+document.getElementById("button3").onclick = takeTurn;
+document.getElementById("button4").onclick = takeTurn;
+document.getElementById("button5").onclick = takeTurn;
+document.getElementById("button6").onclick = takeTurn;
+document.getElementById("button7").onclick = takeTurn;
+redButton.onclick = setTurn;
+yellowButton.onclick = setTurn;
+
+///////////////////// FUNCTIONS /////////////////////////////////////
+
+function init() {
+
+  turn = null;
+  columns = [
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null],
+    [null, null, null, null, null, null]
+  ];
+  message.innerHTML = ""
+  message.appendChild(messagePartOne);
+  message.appendChild(redButton);
+  message.appendChild(messagePartTwo);
+  message.appendChild(yellowButton);
+  message.appendChild(messagePartThree); /*this whole setup is so janky but it works*/
+  win = null;
+
+  render();
+
+}
+
+function render() {
+  if (turn){
+    message.textContent =
+      win === "T" ? "It's a tie!"
+        : win ? `${win} wins!` : `Turn: ${turn}`;
+      winCount.textContent = `Red: ${redWin} | Yellow: ${yellowWin} | Tie: ${tieCount}`
   }
 
-  $('#restart').click(function() {
-    connect4.restart();
-  })
-});
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let xCoord = 80;
+  let yCoord;
 
-class Connect4 {
-  constructor(selector) {
-    this.ROWS = 6;
-    this.COLS = 7;
-    this.player = 'red';
-    this.selector = selector;
-    this.isGameOver = false;
-    this.onPlayerMove = function() {};
-    this.createGrid();
-    this.setupEventListeners();
-  }
-
-  createGrid() {
-    const $board = $(this.selector);
-    $board.empty();
-    this.isGameOver = false;
-    this.player = 'red';
-    for (let row = 0; row < this.ROWS; row++) {
-      const $row = $('<div>')
-        .addClass('row');
-      for (let col = 0; col < this.COLS; col++) {
-        const $col = $('<div>')
-          .addClass('col empty')
-          .attr('data-col', col)
-          .attr('data-row', row);
-        $row.append($col);
-      }
-      $board.append($row);
-    }
-  }
-
-  setupEventListeners() {
-    const $board = $(this.selector);
-    const that = this;
-
-    function findLastEmptyCell(col) {
-      const cells = $(`.col[data-col='${col}']`);
-      for (let i = cells.length - 1; i >= 0; i--) {
-        const $cell = $(cells[i]);
-        if ($cell.hasClass('empty')) {
-          return $cell;
-        }
-      }
-      return null;
-    }
-
-    $board.on('mouseenter', '.col.empty', function() {
-      if (that.isGameOver) return;
-      const col = $(this).data('col');
-      const $lastEmptyCell = findLastEmptyCell(col);
-      $lastEmptyCell.addClass(`next-${that.player}`);
+  columns.forEach((column) => { /*x direction*/
+    yCoord = 68;
+    column.forEach((circle) => { /*y direction*/
+      ctx.fillStyle = (!circle) ? "white" : circle;
+      ctx.beginPath();
+      ctx.arc(xCoord, yCoord, 43, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+      yCoord += 106;
     });
+    xCoord += 106;
+  });
+}
 
-    $board.on('mouseleave', '.col', function() {
-      $('.col').removeClass(`next-${that.player}`);
-    });
+function takeTurn(e) {
+  if(turn) {
+    if (!win) {
+      let targetColumn = columns[Number(e.target.id.charAt(6)) - 1];
 
-    $board.on('click', '.col.empty', function() {
-      if (that.isGameOver) return;
-      const col = $(this).data('col');
-      const $lastEmptyCell = findLastEmptyCell(col);
-      $lastEmptyCell.removeClass(`empty next-${that.player}`);
-      $lastEmptyCell.addClass(that.player);
-      $lastEmptyCell.data('player', that.player);
-
-      const winner = that.checkForWinner(
-        $lastEmptyCell.data('row'),
-        $lastEmptyCell.data('col')
-      )
-      if (winner) {
-        that.isGameOver = true;
-        alert(`Game Over! Player ${that.player} has won!`);
-        $('.col.empty').removeClass('empty');
-        return;
-      }
-
-      that.player = (that.player === 'red') ? 'black' : 'red';
-      that.onPlayerMove();
-      $(this).trigger('mouseenter');
-    });
-  }
-
-  checkForWinner(row, col) {
-    const that = this;
-
-    function $getCell(i, j) {
-      return $(`.col[data-row='${i}'][data-col='${j}']`);
-    }
-
-    function checkDirection(direction) {
-      let total = 0;
-      let i = row + direction.i;
-      let j = col + direction.j;
-      let $next = $getCell(i, j);
-      while (i >= 0 &&
-        i < that.ROWS &&
-        j >= 0 &&
-        j < that.COLS &&
-        $next.data('player') === that.player
-      ) {
-        total++;
-        i += direction.i;
-        j += direction.j;
-        $next = $getCell(i, j);
-      }
-      return total;
-    }
-
-    function checkWin(directionA, directionB) {
-      const total = 1 +
-        checkDirection(directionA) +
-        checkDirection(directionB);
-      if (total >= 4) {
-        return that.player;
-      } else {
-        return null;
+      if (targetColumn.includes(null)) {
+        targetColumn[targetColumn.lastIndexOf(null)] = turn;
+//         let targetCircle = targetColumn.lastIndexOf(null);
+//         for (let i = 0; i <= targetCircle; i++) {
+//           // if (i > 0) {
+//           //   targetColumn[i - 1] = null;
+//           // }
+// console.log(targetColumn[i]);
+//           targetColumn[i] = turn;
+//           console.log(targetColumn[i]);
+//           console.log(columns);
+//           setTimeout(render, 500);
+//         }
+        turn = turn === "red" ? "yellow" : "red";
+        win = getWinner();
+        updateWins(win)
+        render();
       }
     }
-
-    function checkDiagonalBLtoTR() {
-      return checkWin({i: 1, j: -1}, {i: 1, j: 1});
-    }
-
-    function checkDiagonalTLtoBR() {
-      return checkWin({i: 1, j: 1}, {i: -1, j: -1});
-    }
-
-    function checkVerticals() {
-      return checkWin({i: -1, j: 0}, {i: 1, j: 0});
-    }
-
-    function checkHorizontals() {
-      return checkWin({i: 0, j: -1}, {i: 0, j: 1});
-    }
-
-    return checkVerticals() ||
-      checkHorizontals() ||
-      checkDiagonalBLtoTR() ||
-      checkDiagonalTLtoBR();
   }
+}
 
-  restart () {
-    this.createGrid();
-    this.onPlayerMove();
+function getWinner() {
+  let winner = null;
+
+  //this checks for vertical wins
+  for (let j = 0; j < 6 && !winner; j++) {
+    column = columns[j];
+    for (let i = 3; i <= 5 && !winner; i++) {
+      winner = (column[i] === "red" && column[i - 1] === "red" && column[i - 2] === "red" && column[i - 3] === "red")
+        ? "red"
+        : (column[i] === "yellow" && column[i - 1] === "yellow" && column[i - 2] === "yellow" && column[i - 3] === "yellow")
+        ? "yellow"
+        : null;
+    }
+  };
+
+  //this one does horizontal ones
+  for (let j = 3; j <= 6 && !winner; j++) {
+    for (let i = 0; i <= 5 && !winner; i++) {
+      winner = (columns[j][i] === "red" && columns[j - 1][i] === "red" && columns[j - 2][i] === "red" && columns[j - 3][i] === "red")
+        ? "red"
+        : (columns[j][i] === "yellow" && columns[j - 1][i] === "yellow" && columns[j - 2][i] === "yellow" && columns[j - 3][i] === "yellow")
+        ? "yellow"
+        : null;
+    }
+  };
+
+  //this one does diagonal ones
+  for (let j = 3; j <= 6 && !winner; j++) {
+    for (let i = 0; i <= 5 && !winner; i++) {
+      winner = (columns[j][i] === "red" && columns[j - 1][i + 1] === "red" && columns[j - 2][i + 2] === "red" && columns[j - 3][i + 3] === "red") || (columns[j][i] === "red" && columns[j - 1][i - 1] === "red" && columns[j - 2][i - 2] === "red" && columns[j - 3][i - 3] === "red")
+        ? "red"
+        : (columns[j][i] === "yellow" && columns[j - 1][i + 1] === "yellow" && columns[j - 2][i + 2] === "yellow" && columns[j - 3][i + 3] === "yellow") || (columns[j][i] === "yellow" && columns[j - 1][i - 1] === "yellow" && columns[j - 2][i - 2] === "yellow" && columns[j - 3][i - 3] === "yellow")
+        ? "yellow"
+        : null;
+    }
+  };
+
+  let isBlankSpaces = false;
+
+  for (let i = 0; i <= 6 && isBlankSpaces === false; i++) {
+
+    isBlankSpaces = columns[i].includes(null);
+
+  };
+
+  return winner ? winner : isBlankSpaces ? null : "T";
+}
+
+function updateWins(a) {
+  if (a === "red") {
+    redWin++
+  } else if (a === "yellow") {
+    yellowWin++
+  } else if (a === "T") {
+    tieCount++
   }
+}
+
+function setTurn(f) {
+  turn = f.target.id.substring(7);
+  message.textContent = `Turn: ${turn}`;
 }
