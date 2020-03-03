@@ -1,0 +1,57 @@
+body {
+  text-align: center;
+  font-family: "Roboto", monospace;
+  background-color: violet;
+  color: white;
+}
+
+h1 {
+  color: white;
+  margin: 0 auto;
+  font-family: "Roboto", monospace;
+  font-size: 48px;
+  margin: 2%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+
+.wrap {
+  flex-wrap: wrap;
+  height: 456px;
+  width: 456px;
+}
+
+
+#reset-button {
+  background-color: violet;
+  border: 1px solid white;
+  color: white;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+}
+
+
+#reset-button:hover {
+  background-color: purple;
+  color: white;
+  cursor: pointer;
+}
+
+canvas {
+  background:violet;
+  border: 1px solid white;
+}
