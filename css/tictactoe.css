@@ -88,16 +88,14 @@ h2 {
 
 
 #x-button:hover {
-  background-color: deeppink;
-  color: white;
+  color: red;
   cursor: pointer;
 
 }
 
 
 #o-button:hover {
-  background-color: deeppink;
-  color: white;
+  color: deepskyblue;
   cursor: pointer;
 }
 
