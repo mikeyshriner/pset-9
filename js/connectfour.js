@@ -162,7 +162,7 @@ function getWinner() {
 
     isBlankSpaces = columns[i].includes(null);
 
-  };
+  }; 
 
   return winner ? winner : isBlankSpaces ? null : "T";
 }

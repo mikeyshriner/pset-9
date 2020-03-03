@@ -41,7 +41,7 @@ xButton.onclick = setTurn;
 oButton.onclick = setTurn;
 
 ///////////////////// FUNCTIONS /////////////////////////////////////
-
+ 
 //this runs first
 function init() {
   for (let b of squares) {

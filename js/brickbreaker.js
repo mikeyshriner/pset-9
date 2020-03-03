@@ -1,3 +1,7 @@
+///////////////////// CONSTANTS /////////////////////////////////////
+///////////////////// APP STATE (VARIABLES) /////////////////////////
+
+///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var canvas = document.getElementById("myCanvas");
@@ -7,20 +11,20 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 var ballRadius = 10;
-var paddleHeight = 10;
-var paddleWidth = 75;
+var paddleHeight = 7;
+var paddleWidth = 50;
 var paddleX = (canvas.width-paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 5;
+var brickRowCount = 9;
+var brickColumnCount = 7;
 var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
-var lives = 3;
+var lives = 5;
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
@@ -105,7 +109,7 @@ function collisionDetection() {
 
                     if(score == brickRowCount*brickColumnCount) {
 
-                      alert("Success!");
+                      alert("Success!😎");
 
                       document.location.reload();
 
