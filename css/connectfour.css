@@ -69,9 +69,9 @@ button:hover {
 }
 
 #drop-button:hover {
-  background-color: #4d79ff;
+  background: #4d79ff;
   color: white;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 #reset-button:hover {
