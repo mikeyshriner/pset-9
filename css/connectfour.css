@@ -41,7 +41,14 @@ button:hover {
 }
 
 .drop-button {
-  font-size: 35px;
+  background-color: lightskyblue;
+  border: 1px solid white;
+  color: white;
+  font-size: 21px;
+  line-height: 30px;
+  margin: 0%;
+  text-align: center;
+  width: 100px;;
 }
 
 #site-header {
@@ -61,19 +68,18 @@ button:hover {
   width: 456px;
 }
 
+#drop-button:hover {
+  background-color: #4d79ff;
+  color: white;
+  cursor: pointer;  
+}
+
 #reset-button:hover {
   background-color: #4d79ff;
   color: white;
   cursor: pointer;
 }
 
-#button-red {
-
-}
-
-#button-yellow {
-
-}
 
 #button-red:hover {
   cursor: pointer;
