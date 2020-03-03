@@ -159,7 +159,7 @@ function drawBall() {
 
     ctx.arc(x, y, 10, 0, Math.PI*2);
 
-    ctx.fillStyle = "#ffe66b";
+    ctx.fillStyle = "white";
 
     ctx.fill();
 
@@ -179,7 +179,7 @@ function drawPaddle() {
 
     ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
 
-    ctx.fillStyle = "#a1ff75";
+    ctx.fillStyle = "white";
 
     ctx.fill();
 
@@ -209,7 +209,7 @@ function drawBricks() {
 
               ctx.rect(brickX, brickY, brickWidth, brickHeight);
 
-              ctx.fillStyle = "#6593f5";
+              ctx.fillStyle = "white";
 
               ctx.fill();
 
