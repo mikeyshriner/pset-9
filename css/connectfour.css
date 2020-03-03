@@ -1,0 +1,82 @@
+body {
+  text-align: center;
+  font-family: "Roboto", monospace;
+  background: lightskyblue;
+  color: white;
+}
+
+h1 {
+  margin: 0 auto;
+  font-family: "Roboto", monospace;
+  font-size: 48px;
+  margin: 2%;
+  color: white;
+}
+
+h2 {
+  font-size: 36px;
+  font-weight: lighter;
+  margin: 2%;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  height: 456px;
+  width: 456px;
+}
+
+.drop-button {
+  font-size: 35px;
+}
+
+#site-header {
+  font-size: 20px;
+  font-family: "Roboto", monospace;
+
+}
+
+#reset-button {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+}
+
+#reset-button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+#button-red:hover {
+  cursor: pointer;
+  color: red
+}
+
+#button-yellow:hover {
+  cursor: pointer;
+  color: yellow;
+}
+
+#connectfour-board {
+  background-color: lightskyblue;
+}
