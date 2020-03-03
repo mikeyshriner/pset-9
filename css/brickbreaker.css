@@ -33,24 +33,6 @@ h1 {
 }
 
 
-#reset-button {
-  background-color: violet;
-  border: 1px solid white;
-  color: white;
-  font-size: 21px;
-  line-height: 55px;
-  margin: 1%;
-  text-align: center;
-  width: 456px;
-}
-
- 
-#reset-button:hover {
-  background-color: purple;
-  color: white;
-  cursor: pointer;
-}
-
 canvas {
   background:violet;
   border: 1px solid white;
